@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <title>Performance Analytics</title>
+</head>
+
+<body>
+<noscript>
+  You need to enable JavaScript to run this app.
+</noscript>
+<div id="root"></div>
+<!--
+    This HTML file is a template.
+    If you open it directly in the browser, you will see an empty page.
+
+    You can add webfonts, meta tags, or analytics to this file.
+    The build step will place the bundled scripts into the <body> tag.
+
+    To begin the development, run `npm start` or `yarn start`.
+    To create a production bundle, use `npm run build` or `yarn build`.
+  -->
+
+<div id="idata-app" style="height: 400px">
+
+</div>
+<div>
+
+</div>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pubsub-js/1.9.0/pubsub.min.js" integrity="sha512-uBtVltNBUq45IPe/JWfSr1t6bWcpivYh/EJfQxZQ8jVqI6olmUfDrOscYHSoZnmJJpHe1cWZTupZ1SFgQaLyQw==" crossorigin="anonymous"></script>
+<script crossorigin="anonymous" src="https://unpkg.com/scriptjs@2.5.9/dist/script.min.js" ></script>
+<script>
+  $script('/static/umd/index.js',()=>{
+    window['idata-apps-generic-timeseries'].default.render('idata-app',{ id: '1'});
+  });
+
+</script>
+<link href="https://unpkg.com/jsoneditor@5.25.0/dist/jsoneditor.min.css" rel="stylesheet" type="text/css">
+<script src="https://unpkg.com/jsoneditor@5.25.0/dist/jsoneditor.min.js"></script>
+<button id="publish" >Publish</button>
+<div id="jsoneditor" style="width: 400px; height: 400px;"></div>
+<script>
+  // create the editor
+  const container = document.getElementById("jsoneditor")
+  const options = {}
+  const editor = new JSONEditor(container, options)
+
+  // set json
+  const initialJson = [
+    {
+      "id": "japan",
+      "color": "hsl(134, 70%, 50%)",
+      "data": [
+        {
+          "x": "plane",
+          "y": 5
+        },
+        {
+          "x": "helicopter",
+          "y": 138
+        },
+        {
+          "x": "boat",
+          "y": 243
+        },
+        {
+          "x": "train",
+          "y": 44
+        },
+        {
+          "x": "subway",
+          "y": 226
+        },
+        {
+          "x": "bus",
+          "y": 134
+        },
+        {
+          "x": "car",
+          "y": 289
+        },
+        {
+          "x": "moto",
+          "y": 227
+        },
+        {
+          "x": "bicycle",
+          "y": 107
+        },
+        {
+          "x": "horse",
+          "y": 70
+        },
+        {
+          "x": "skateboard",
+          "y": 236
+        },
+        {
+          "x": "others",
+          "y": 204
+        }
+      ]
+    },
+    {
+      "id": "france",
+      "color": "hsl(286, 70%, 50%)",
+      "data": [
+        {
+          "x": "plane",
+          "y": 160
+        },
+        {
+          "x": "helicopter",
+          "y": 97
+        },
+        {
+          "x": "boat",
+          "y": 21
+        },
+        {
+          "x": "train",
+          "y": 190
+        },
+        {
+          "x": "subway",
+          "y": 24
+        },
+        {
+          "x": "bus",
+          "y": 296
+        },
+        {
+          "x": "car",
+          "y": 86
+        },
+        {
+          "x": "moto",
+          "y": 121
+        },
+        {
+          "x": "bicycle",
+          "y": 33
+        },
+        {
+          "x": "horse",
+          "y": 282
+        },
+        {
+          "x": "skateboard",
+          "y": 111
+        },
+        {
+          "x": "others",
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "us",
+      "color": "hsl(265, 70%, 50%)",
+      "data": [
+        {
+          "x": "plane",
+          "y": 136
+        },
+        {
+          "x": "helicopter",
+          "y": 290
+        },
+        {
+          "x": "boat",
+          "y": 191
+        },
+        {
+          "x": "train",
+          "y": 88
+        },
+        {
+          "x": "subway",
+          "y": 149
+        },
+        {
+          "x": "bus",
+          "y": 20
+        },
+        {
+          "x": "car",
+          "y": 149
+        },
+        {
+          "x": "moto",
+          "y": 236
+        },
+        {
+          "x": "bicycle",
+          "y": 57
+        },
+        {
+          "x": "horse",
+          "y": 292
+        },
+        {
+          "x": "skateboard",
+          "y": 23
+        },
+        {
+          "x": "others",
+          "y": 71
+        }
+      ]
+    },
+    {
+      "id": "germany",
+      "color": "hsl(284, 70%, 50%)",
+      "data": [
+        {
+          "x": "plane",
+          "y": 120
+        },
+        {
+          "x": "helicopter",
+          "y": 197
+        },
+        {
+          "x": "boat",
+          "y": 253
+        },
+        {
+          "x": "train",
+          "y": 129
+        },
+        {
+          "x": "subway",
+          "y": 48
+        },
+        {
+          "x": "bus",
+          "y": 48
+        },
+        {
+          "x": "car",
+          "y": 21
+        },
+        {
+          "x": "moto",
+          "y": 269
+        },
+        {
+          "x": "bicycle",
+          "y": 187
+        },
+        {
+          "x": "horse",
+          "y": 52
+        },
+        {
+          "x": "skateboard",
+          "y": 195
+        },
+        {
+          "x": "others",
+          "y": 233
+        }
+      ]
+    },
+    {
+      "id": "norway",
+      "color": "hsl(155, 70%, 50%)",
+      "data": [
+        {
+          "x": "plane",
+          "y": 12
+        },
+        {
+          "x": "helicopter",
+          "y": 271
+        },
+        {
+          "x": "boat",
+          "y": 266
+        },
+        {
+          "x": "train",
+          "y": 128
+        },
+        {
+          "x": "subway",
+          "y": 248
+        },
+        {
+          "x": "bus",
+          "y": 162
+        },
+        {
+          "x": "car",
+          "y": 186
+        },
+        {
+          "x": "moto",
+          "y": 153
+        },
+        {
+          "x": "bicycle",
+          "y": 114
+        },
+        {
+          "x": "horse",
+          "y": 145
+        },
+        {
+          "x": "skateboard",
+          "y": 83
+        },
+        {
+          "x": "others",
+          "y": 71
+        }
+      ]
+    }
+  ];
+
+  editor.set(initialJson)
+
+
+  document.getElementById('publish')
+  .addEventListener('click',()=>{
+    // get json
+    const updatedJson = editor.get();
+    PubSub.publish('line.series.1',{
+      payload: updatedJson
+    });
+  });
+
+</script>
+<button id="render" >Render</button>
+<div id="options" ></div>
+<script src="https://cdn.jsdelivr.net/npm/react-json-view@1.20.0/dist/main.js" ></script>
+<script>
+  const optionsEditor = new JSONEditor(document.getElementById('options'), {mode: 'code'});
+  document.getElementById('render')
+  .addEventListener('click',()=>{
+    const options = optionsEditor.get();
+    window['idata-apps-generic-timeseries'].default.render('idata-app',{id: '1',options});
+  });
+
+  ReactDOM.render(React.createElement(reactJsonView.default,{
+    onEdit: ({updated_src}) => {
+      const options = optionsEditor.get();
+      window['idata-apps-generic-timeseries'].default.render('idata-app',{...updated_src});
+    },
+    src: {
+      display: {
+        bars: false,
+        lines: true,
+        points: false,
+      },
+      axis: {
+        leftY: {
+
+        },
+        rightY: {
+
+        },
+        y: {
+
+        },
+        x: {
+
+        }
+      }
+    }
+  }),document.getElementById('options'))
+</script>
+</body>
+
+</html>
