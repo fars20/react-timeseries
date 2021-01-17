@@ -57,6 +57,10 @@
 </script>
 <link href="https://unpkg.com/jsoneditor@5.25.0/dist/jsoneditor.min.css" rel="stylesheet" type="text/css">
 <script src="https://unpkg.com/jsoneditor@5.25.0/dist/jsoneditor.min.js"></script>
+<button id="render" >Render</button>
+
+<div id="options" ></div>
+
 <button id="publish" >Publish</button>
 <div id="jsoneditor" style="width: 400px; height: 400px;"></div>
 <script>
@@ -352,21 +356,12 @@
   });
 
 </script>
-<button id="render" >Render</button>
-<div id="options" ></div>
 <script src="https://cdn.jsdelivr.net/npm/react-json-view@1.20.0/dist/main.js" ></script>
 <script>
-  const optionsEditor = new JSONEditor(document.getElementById('options'), {mode: 'code'});
-  document.getElementById('render')
-  .addEventListener('click',()=>{
-    const options = optionsEditor.get();
-    window['idata-apps-generic-timeseries'].default.render('idata-app',{id: '1',options});
-  });
-
   ReactDOM.render(React.createElement(reactJsonView.default,{
     onEdit: ({updated_src}) => {
-      const options = optionsEditor.get();
-      window['idata-apps-generic-timeseries'].default.render('idata-app',{...updated_src});
+      window['idata-apps-generic-timeseries'].default.render('idata-app',{ options: {...updated_src} });
+      console.log(updated_src);
     },
     src: {
       display: {
