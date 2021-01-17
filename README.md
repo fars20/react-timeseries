@@ -1,6 +1,6 @@
 # Time Scope
 
-![timescope](docs/screenshot-timescope-02-annotated.png)
+![timescope](timescope.png)
 
 [![Gitter](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/timescope)
 [![TravisCI](https://img.shields.io/travis/far20/timescope.svg)](https://travis-ci.org/far20/timescope)
