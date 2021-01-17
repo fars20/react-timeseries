@@ -51,7 +51,9 @@
 <script crossorigin="anonymous" src="https://unpkg.com/scriptjs@2.5.9/dist/script.min.js" ></script>
 <script>
   $script('/static/umd/index.js',()=>{
-    window['idata-apps-generic-timeseries'].default.render('idata-app',{ id: '1'});
+    const initialOptions = JSON.parse(window.localStorage.getItem('options') || '{}');
+
+    window['idata-apps-generic-timeseries'].default.render('idata-app',{ id: '1',options: {...initialOptions || {}}});
   });
 
 </script>
@@ -358,12 +360,18 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/react-json-view@1.20.0/dist/main.js" ></script>
 <script>
+  const initialOptions = JSON.parse(window.localStorage.getItem('options') || '{}');
+
   ReactDOM.render(React.createElement(reactJsonView.default,{
     onEdit: ({updated_src}) => {
+      window.localStorage.setItem('options',JSON.stringify(updated_src));
+
       window['idata-apps-generic-timeseries'].default.render('idata-app',{ options: {...updated_src} });
       console.log(updated_src);
+
+
     },
-    src: {
+    src: initialOptions.display ? initialOptions  : {
       display: {
         bars: false,
         lines: true,
