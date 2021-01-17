@@ -1,5 +1,5 @@
 {
-  "name": "@idata-apps/generic-timeseries",
+  "name": "@idata-apps/time-scope",
   "version": "1.4.0",
   "description": "micro daa app that visualizes random time series data",
   "keywords": [
