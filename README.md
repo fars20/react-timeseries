@@ -1,19 +1,19 @@
-# React Timeseries
+# Time Scope
 
-![FlameScope](docs/screenshot-flamescope-02-annotated.png)
+![timescope](docs/screenshot-timescope-02-annotated.png)
 
-[![Gitter](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/flamescope)
-[![TravisCI](https://img.shields.io/travis/Netflix/flamescope.svg)](https://travis-ci.org/Netflix/flamescope)
-[![NetflixOSS Lifecycle](https://img.shields.io/osslifecycle/Netflix/flamescope.svg)]()
-[![License](https://img.shields.io/github/license/Netflix/flamescope.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Gitter](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/timescope)
+[![TravisCI](https://img.shields.io/travis/Netflix/timescope.svg)](https://travis-ci.org/Netflix/timescope)
+[![NetflixOSS Lifecycle](https://img.shields.io/osslifecycle/Netflix/timescope.svg)]()
+[![License](https://img.shields.io/github/license/Netflix/timescope.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
-ReactTimeseries is a visualization component for different time series as a combination of line, bar and scater charts, allowing quick analysis of different time series data from sources like perturbations, variance, single-threaded execution, and more.
+TimeScope is a visualization component for different time series as a combination of line, bar and scater charts, allowing quick analysis of different time series data from sources like perturbations, variance, single-threaded execution, and more.
 
-ReactTimeseries begins by displaying the input data as an interactive subsecond-offset graph. This shows patterns in the data. You can then select a time range to highlight on different patterns, and a flame graph will be generated just for that time range.
+TimeScope begins by displaying the input data as an interactive subsecond-offset graph. This shows patterns in the data. You can then select a time range to highlight on different patterns, and a flame graph will be generated just for that time range.
 
 ## Disclaimer
 
-ReactTimeseries is in early stages of development and under constant change, so bugs and issues are expected. We count on your support to find and report them!
+TimeScope is in early stages of development and under constant change, so bugs and issues are expected. We count on your support to find and report them!
 
 ## Installation / Instructions
 
@@ -37,21 +37,21 @@ If you are profiling C++ code, you may want to pipe stacks through `c++filt` to 
 
 There are extra steps to fetch stacks correctly for some runtimes, depending on the runtime. For example, we've previously published Java steps in [Java in Flames](https://medium.com/netflix-techblog/java-in-flames-e763b3d32166): java needs to be running with the -XX:+PreserveFramePointer option, and [perf-map-agent](https://github.com/jvm-profiling-tools/perf-map-agent) must be run immediately after the `perf record` to dump a JIT symbol table in /tmp.
 
-FlameScope can visualize any Linux `perf script` output that includes stack traces, including page faults, context switches, and other events. See the References section below for documentation.
+timescope can visualize any Linux `perf script` output that includes stack traces, including page faults, context switches, and other events. See the References section below for documentation.
 
-FlameScope is composed of two main components, the Python backend, and a React client interface. A pre-built client bundle is distributed with the backend, so the quickest way to get started is to install the Python requirements and start the application, as described earlier.
+timescope is composed of two main components, the Python backend, and a React client interface. A pre-built client bundle is distributed with the backend, so the quickest way to get started is to install the Python requirements and start the application, as described earlier.
 
 Although not necessary, we **strongly** suggest using [virtualenv](https://github.com/pypa/virtualenv) to isolate your Python environment.
 
-By default, FlameScope will load a list of files from the `examples` directory, which includes a two profile examples.
+By default, timescope will load a list of files from the `examples` directory, which includes a two profile examples.
 
 ## Configuration Options
 
-FlameScope configuration file can be found in `app/config.py`.
+timescope configuration file can be found in `app/config.py`.
 
 ```python
 DEBUG = True # run the web server in debug mode
-PROFILE_DIR = 'examples' # path where flamescope will look for profiles
+PROFILE_DIR = 'examples' # path where timescope will look for profiles
 HOST = '127.0.0.1' # web server host
 PORT = 5000 # web server port
 JSONIFY_PRETTYPRINT_REGULAR = False # pretty print api json responses
@@ -81,25 +81,25 @@ $ npm run webpack-watch
 
 ## Building a Docker Image
 
-FlameScope provides a Dockerfile to build a Docker image:
+timescope provides a Dockerfile to build a Docker image:
 
 ```bash
-$ cd flamescope
-$ docker build -t flamescope .
+$ cd timescope
+$ docker build -t timescope .
 ```
 
 The container expects the profiles to be bind-mounted into `/profiles` and listens on port 5000. To view profiles from `/tmp/profiles`, start the container with the following command:
 
 ```
-$ docker run --rm -it -v /tmp/profiles:/profiles:ro -p 5000:5000 flamescope
+$ docker run --rm -it -v /tmp/profiles:/profiles:ro -p 5000:5000 timescope
 ```
 
-Then access FlameScope on [http://127.0.0.1:5000](http://127.0.0.1:5000/)
+Then access timescope on [http://127.0.0.1:5000](http://127.0.0.1:5000/)
 
 ## References
 
-- [FlameScope Introduction (video)](https://www.youtube.com/watch?v=cFuI8SAAvJg)
-- [FlameScope Examples (video)](https://www.youtube.com/watch?v=gRawd7CO-Q8)
+- [timescope Introduction (video)](https://www.youtube.com/watch?v=cFuI8SAAvJg)
+- [timescope Examples (video)](https://www.youtube.com/watch?v=gRawd7CO-Q8)
 - [Flame Graphs](http://www.brendangregg.com/flamegraphs.html)
 - [Java in Flames](https://medium.com/netflix-techblog/java-in-flames-e763b3d32166)
 - [Subsecond-offset Heat Maps](http://www.brendangregg.com/HeatMaps/subsecondoffset.html)
